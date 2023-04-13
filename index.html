@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Lines</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+	<div id="game">
+		<div class="forecast"></div>
+		<div class="class__forecastPositionsForThreeBalls"></div>
+		<div class="grid"></div>
+		<div style="text-align:center">
+			Score: <strong class="score">0</strong> /
+			Record: <strong class="record">0</strong>
+		</div>
+	</div>
+
+	<script src="lines2.js"></script>
+	<script>
+		Lines.init();
+	</script>
+
+</body>
+</html>
+
+<!-- string for reload page:
+setTimeout(window.location.reload.bind(window.location), 3); -->
+
+<!-- main ideas and logic taken from https://github.com/arnisritins/Color-Lines -->
