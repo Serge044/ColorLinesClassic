@@ -487,6 +487,7 @@ var Lines = (function () {
 
   //   ------------------------------------ here ---------------------------------------------------------------
   //   ------------------------------ func for second - infinity iteration (1 - ...) ------------------------------------------------------
+
   function addBalls(callback) {
     // let redBalls = getCells(".red");
     // console.log("RED BALLS: ", redBalls);
@@ -537,7 +538,7 @@ var Lines = (function () {
       if (emptyCells.length > 0) {
         // Gets random empty cell
         var cell = emptyCells[rand(0, emptyCells.length - 1)];
-        if (cellWithMyColor.length > 0 && a > 0 && a < 1000000000000) {
+        if (cellWithMyColor.length > 0 && a > 0 && a < 100000000) {
           console.log(
             "%c My special Func in action! ",
             "background: #222; color: #bada55"
@@ -546,15 +547,10 @@ var Lines = (function () {
           a = 0;
           for (let k = 0; k < cellWithMyColor.length; k++) {
             var cell = cellWithMyColor[k];
-            grid[cell.dataset.y][cell.dataset.x] = colors.key(
-              `${cellWithMyColor[k].style.backgroundColor}`
-            );
+            grid[cell.dataset.y][cell.dataset.x] = colors.key(forecast[k]);
 
             cells.push(cell);
-            cell.className =
-              "ball " +
-              `${cellWithMyColor[k].style.backgroundColor}` +
-              " fadein";
+            cell.className = "ball " + forecast[k] + " fadein";
           }
         } else {
           var cell = emptyCells[i];

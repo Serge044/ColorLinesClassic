@@ -4,15 +4,6 @@
  * Copyright (c) 2014 Arnis Ritins
  * Released under the MIT license
  */
-
-var a = 0;
-var timer = function () {
-  console.log(a);
-  a++;
-};
-
-var refreshIntervalId;
-
 var Lines = (function () {
   "use strict";
 
@@ -120,21 +111,14 @@ var Lines = (function () {
 
             // console.log("ForecastFourth: ", forecastFourth);
 
-            // console.log("one, ", threeElems[0]);
-            // console.log("two, ", e.currentTarget);
+            console.log("one, ", threeElems[0]);
+            console.log("two, ", e.currentTarget);
             console.log("threeElems, ", threeElems);
             console.log("FORECAST", forecast);
-            const arrOfColorForecast = [];
-            for (let u = 0; u < forecast.length; u++) {
-              arrOfColorForecast.push(forecast[u]);
-            }
-
-            // console.log("arrOfColorForecast:", arrOfColorForecast);
 
             if (blocked) {
               return;
-              // added && a === 0, not sure I need it or not(probably it solves added 4(unnesessary) ball). need to check.
-            } else if (e.currentTarget === threeElems[0] && a === 0) {
+            } else if (e.currentTarget === threeElems[0]) {
               // threeElems.splice(0, 1);
               const secondElem = threeElems[1];
               const thirdElem = threeElems[2];
@@ -168,8 +152,7 @@ var Lines = (function () {
 
               onEmptyCellClick(e);
               console.log("Hello elem 1. threeElems : ", threeElems);
-              // added && a === 0, not sure I need it or not(probably it solves added 4(unnesessary) ball). need to check.
-            } else if (e.currentTarget === threeElems[1] && a === 0) {
+            } else if (e.currentTarget === threeElems[1]) {
               // threeElems.splice(-1);
               console.log("SHOW ME2: ", threeElems);
               const firstElem = threeElems[0];
@@ -192,8 +175,7 @@ var Lines = (function () {
 
               onEmptyCellClick(e);
               console.log("Hello elem 2. threeElems : ", threeElems);
-              // added && a === 0, not sure I need it or not(probably it solves added 4(unnesessary) ball). need to check.
-            } else if (e.currentTarget === threeElems[2] && a === 0) {
+            } else if (e.currentTarget === threeElems[2]) {
               console.log("SHOW ME2: ", threeElems);
               const firstElem = threeElems[0];
               const secondElem = threeElems[1];
@@ -323,7 +305,7 @@ var Lines = (function () {
       addBallsRed();
       addBallsYellow();
     }
-    // addThreeBalls();
+    addThreeBalls();
 
     // ------------------------------ func for very first iteration (0) ------------------------------------------------------
 
@@ -437,9 +419,6 @@ var Lines = (function () {
         // Checks if there are five-ball lines for destination cell
         if (lines) {
           removeLines([lines]);
-          console.log("10 POINTS TO GRIFFINDOR(ball was added by Me)");
-
-          refreshIntervalId = setInterval(timer, 250);
         } else {
           // Adds balls and checks for five-ball lines
           addBalls(function (cells) {
@@ -455,8 +434,6 @@ var Lines = (function () {
             // Checks if five-ball lines are found after adding balls
             if (lineSets.length > 0) {
               removeLines(lineSets);
-              console.log("10 POINTS TO GRIFFINDOR(ball was added by comp)");
-              // maybe here I also need to add smht like "refreshIntervalId = setInterval(timer, 250);", but not sure, need to test
             } else {
               // Checks if the grid is completely filled with balls
 
@@ -487,6 +464,7 @@ var Lines = (function () {
 
   //   ------------------------------------ here ---------------------------------------------------------------
   //   ------------------------------ func for second - infinity iteration (1 - ...) ------------------------------------------------------
+
   function addBalls(callback) {
     // let redBalls = getCells(".red");
     // console.log("RED BALLS: ", redBalls);
@@ -505,9 +483,9 @@ var Lines = (function () {
         cell4_8[j].style.backgroundColor === "magenta"
       ) {
         cellWithMyColor.push(cell4_8[j]);
-        // console.log(
-        //   "TRUE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-        // );
+        console.log(
+          "TRUE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+        );
         console.log(
           "!!!!!!!!!!!!cellWithMyColor!!!!!!!!!!!!! ",
           cellWithMyColor
@@ -515,12 +493,12 @@ var Lines = (function () {
       }
     }
 
-    // console.log("#cell-4-8: ", cell4_8);
+    console.log("#cell-4-8: ", cell4_8);
 
     blocked = true;
     var cells = [];
     const howManyEmpty = getCells(".empty");
-    // console.log("HOW MANY EMPTY: ", howManyEmpty);
+    console.log("HOW MANY EMPTY: ", howManyEmpty);
 
     // console.log("myFlag: ", myFlag);
 
@@ -536,33 +514,20 @@ var Lines = (function () {
       //   console.log("empty cells: ", emptyCells);
       if (emptyCells.length > 0) {
         // Gets random empty cell
-        var cell = emptyCells[rand(0, emptyCells.length - 1)];
-        if (cellWithMyColor.length > 0 && a > 0 && a < 1000000000000) {
-          console.log(
-            "%c My special Func in action! ",
-            "background: #222; color: #bada55"
-          );
-          clearInterval(refreshIntervalId);
-          a = 0;
-          for (let k = 0; k < cellWithMyColor.length; k++) {
-            var cell = cellWithMyColor[k];
-            grid[cell.dataset.y][cell.dataset.x] = colors.key(
-              `${cellWithMyColor[k].style.backgroundColor}`
-            );
+        // var cell = emptyCells[rand(0, emptyCells.length - 1)];
+        // if (cell4_8.length > 0) {
+        //   var cell = cell4_8[0];
+        //   grid[cell.dataset.y][cell.dataset.x] = colors.key(forecast[i]);
 
-            cells.push(cell);
-            cell.className =
-              "ball " +
-              `${cellWithMyColor[k].style.backgroundColor}` +
-              " fadein";
-          }
-        } else {
-          var cell = emptyCells[i];
-          grid[cell.dataset.y][cell.dataset.x] = colors.key(forecast[i]);
+        //   cells.push(cell);
+        //   cell.className = "ball " + forecast[i] + " fadein";
+        // } else {
+        var cell = emptyCells[i];
+        grid[cell.dataset.y][cell.dataset.x] = colors.key(forecast[i]);
 
-          cells.push(cell);
-          cell.className = "ball " + forecast[i] + " fadein";
-        }
+        cells.push(cell);
+        cell.className = "ball " + forecast[i] + " fadein";
+        // }
       } else {
         break;
       }
@@ -802,7 +767,7 @@ var Lines = (function () {
     }
 
     // console.log("!!!emptyCells!!!: ", emptyCells);
-    // console.log("!!!randomEmptyCells!!!: ", randomEmptyCells);
+    console.log("!!!randomEmptyCells!!!: ", randomEmptyCells);
 
     for (let k = 0; k < 4; k++) {
       // threeElems.push(emptyCells[k]);
@@ -819,7 +784,7 @@ var Lines = (function () {
     // let flag;
     // console.log("FLAG ", flag);
     var howManyBalls = getCells(".ball");
-    // console.log("howManyBalls: ", howManyBalls);
+    console.log("howManyBalls: ", howManyBalls);
     function addLastBall() {
       blocked = true;
       var cells = [];
@@ -877,7 +842,7 @@ var Lines = (function () {
       // if (emptyCells.length > 0 && emptyCells.length < 3) {
       //   gameOver();
       // }
-      // console.log("THIS: ", emptyCells.length);
+      console.log("THIS: ", emptyCells.length);
     }
 
     // ---------------------- !!!!!!!!!!!!!!!!! work here with forecasting colors on cells !!!!!!!!!!!!!!!!! ----------------------------------------------------
