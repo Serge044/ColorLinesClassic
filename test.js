@@ -44,3 +44,67 @@ function addBalls(callback) {
   console.log("ITERATION");
   console.log("Length", emptyCells.length);
 }
+
+function myFuncForOneRandomFreePositionForFirstIteration() {
+  var emptyCellsONE = getCells(".empty");
+
+  var myArrOfRandomIndexesONE = [];
+
+  for (var i = 0; i <= emptyCellsONE.length - 1; i++) {
+    myArrOfRandomIndexesONE.push(i);
+  }
+
+  // randomize nums
+
+  function shuffle(array) {
+    let currentIndex = array.length,
+      randomIndex;
+
+    // While there remain elements to shuffle.
+    while (currentIndex != 0) {
+      // Pick a remaining element.
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex],
+        array[currentIndex],
+      ];
+    }
+
+    return array;
+  }
+
+  // use randomize func
+  shuffle(myArrOfRandomIndexesONE);
+
+  // console.log(myArrOfRandomIndexes);
+
+  const randomEmptyCellsONE = [];
+
+  const myOneUniqueCellPosition = [];
+
+  for (let i = 0; i <= emptyCellsONE.length - 1; i++) {
+    randomEmptyCellsONE.push(emptyCellsONE[myArrOfRandomIndexesONE[i]]);
+  }
+
+  for (let q = 0; q <= randomEmptyCellsONE.length - 1; q++) {
+    if (
+      randomEmptyCellsONE[q] === document.getElementById("cell-0-0") ||
+      randomEmptyCellsONE[q] === document.getElementById("cell-1-0") ||
+      randomEmptyCellsONE[q] === document.getElementById("cell-2-0")
+    ) {
+      console.log(
+        "randomEmptyCellsONE[q] === getCells('#cell-`1,2 or 3`-0')",
+        randomEmptyCellsONE[q]
+      );
+      continue;
+    } else {
+      console.log("good");
+      myOneUniqueCellPosition.push(randomEmptyCellsONE[q]);
+      console.log("myOneUniqueCellPosition", myOneUniqueCellPosition);
+      break;
+    }
+  }
+}
