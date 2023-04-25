@@ -1,3 +1,10 @@
+/**
+ * lines.js
+ *
+ * Copyright (c) 2014 Arnis Ritins
+ * Released under the MIT license
+ */
+
 var a = 0;
 var timer = function () {
   console.log(a);
@@ -5,8 +12,6 @@ var timer = function () {
 };
 
 var refreshIntervalId;
-
-var bgColorFromLastClick;
 
 var Lines = (function () {
   "use strict";
@@ -54,9 +59,9 @@ var Lines = (function () {
     recordElement = document.querySelector(".record");
 
     // added
-    // forecastPositionsForThreeBalls = document.querySelector(
-    //   ".class__forecastPositionsForThreeBalls"
-    // );
+    forecastPositionsForThreeBalls = document.querySelector(
+      ".class__forecastPositionsForThreeBalls"
+    );
 
     // Sets default game values
     grid = [];
@@ -117,21 +122,6 @@ var Lines = (function () {
 
             // console.log("one, ", threeElems[0]);
             // console.log("two, ", e.currentTarget);
-            const gridElement = document.getElementById("grid").childNodes;
-
-            for (let d = 0; d < gridElement.length; d++) {
-              gridElement[d].addEventListener("click", function (something) {
-                if (true) {
-                  bgColorFromLastClick = gridElement[d].style.backgroundColor;
-                  console.log(
-                    "MY CONSOLE!!!!!!"
-                    // gridElement[d].style.backgroundColor
-                    // bgColorFromLastClick
-                  );
-                }
-              });
-            }
-
             console.log("threeElems, ", threeElems);
             console.log("FORECAST", forecast);
             const arrOfColorForecast = [];
@@ -333,7 +323,7 @@ var Lines = (function () {
       addBallsRed();
       addBallsYellow();
     }
-    // addThreeBalls();
+    addThreeBalls();
 
     // ------------------------------ func for very first iteration (0) ------------------------------------------------------
 
@@ -453,7 +443,7 @@ var Lines = (function () {
           // added 24.04.23
           clearInterval(refreshIntervalId);
           a = 0;
-          refreshIntervalId = setInterval(timer, 100);
+          refreshIntervalId = setInterval(timer, 250);
         } else {
           // Adds balls and checks for five-ball lines
           addBalls(function (cells) {
@@ -539,92 +529,104 @@ var Lines = (function () {
     // console.log("myFlag: ", myFlag);
 
     // ------------------- start 20.04.2023 -------------------
-    // function myFuncForOneRandomFreePosition2() {
-    var emptyCellsONE = getCells(".empty");
-    let emptyCellsWithFFF = [];
-    let notReallyEmptyCells = [];
+    function myFuncForOneRandomFreePosition2() {
+      var emptyCellsONE = getCells(".empty");
+      let emptyCellsWithFFF = [];
+      let notReallyEmptyCells = [];
 
-    var myArrOfRandomIndexesONE = [];
+      var myArrOfRandomIndexesONE = [];
 
-    for (let u = 0; u <= emptyCellsONE.length - 1; u++) {
-      if (emptyCellsONE[u].style.backgroundColor === "rgb(221, 221, 221)") {
-        emptyCellsWithFFF.push(emptyCellsONE[u]);
-      } else {
-        notReallyEmptyCells.push(emptyCellsONE[u]);
-      }
-    }
-
-    for (var i = 0; i <= emptyCellsONE.length - 1; i++) {
-      myArrOfRandomIndexesONE.push(i);
-    }
-
-    // randomize nums
-
-    function shuffle(array) {
-      let currentIndex = array.length,
-        randomIndex;
-
-      // While there remain elements to shuffle.
-      while (currentIndex != 0) {
-        // Pick a remaining element.
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex--;
-
-        // And swap it with the current element.
-        [array[currentIndex], array[randomIndex]] = [
-          array[randomIndex],
-          array[currentIndex],
-        ];
+      for (let u = 0; u <= emptyCellsONE.length - 1; u++) {
+        if (emptyCellsONE[u].style.backgroundColor === "rgb(221, 221, 221)") {
+          emptyCellsWithFFF.push(emptyCellsONE[u]);
+        } else {
+          notReallyEmptyCells.push(emptyCellsONE[u]);
+        }
       }
 
-      return array;
-    }
-
-    // use randomize func
-    shuffle(myArrOfRandomIndexesONE);
-
-    // console.log(myArrOfRandomIndexes);
-
-    const randomEmptyCellsONE = [];
-
-    const myOneUniqueCellPosition = [];
-
-    for (let i = 0; i <= emptyCellsONE.length - 1; i++) {
-      randomEmptyCellsONE.push(emptyCellsONE[myArrOfRandomIndexesONE[i]]);
-    }
-
-    for (let q = 0; q <= randomEmptyCellsONE.length - 1; q++) {
-      if (
-        randomEmptyCellsONE[q] === document.getElementById("cell-0-0") ||
-        randomEmptyCellsONE[q] === document.getElementById("cell-1-0") ||
-        randomEmptyCellsONE[q] === document.getElementById("cell-2-0")
-      ) {
-        console.log(
-          "randomEmptyCellsONE[q] === getCells('#cell-`1,2 or 3`-0')",
-          randomEmptyCellsONE[q]
-        );
-        continue;
-      } else {
-        console.log("good");
-        myOneUniqueCellPosition.push(randomEmptyCellsONE[q]);
-        console.log("myOneUniqueCellPosition", myOneUniqueCellPosition);
-        break;
+      for (var i = 0; i <= emptyCellsONE.length - 1; i++) {
+        myArrOfRandomIndexesONE.push(i);
       }
+
+      // randomize nums
+
+      function shuffle(array) {
+        let currentIndex = array.length,
+          randomIndex;
+
+        // While there remain elements to shuffle.
+        while (currentIndex != 0) {
+          // Pick a remaining element.
+          randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex--;
+
+          // And swap it with the current element.
+          [array[currentIndex], array[randomIndex]] = [
+            array[randomIndex],
+            array[currentIndex],
+          ];
+        }
+
+        return array;
+      }
+
+      // use randomize func
+      shuffle(myArrOfRandomIndexesONE);
+
+      // console.log(myArrOfRandomIndexes);
+
+      const randomEmptyCellsONE = [];
+
+      const myOneUniqueCellPosition = [];
+
+      for (let i = 0; i <= emptyCellsONE.length - 1; i++) {
+        randomEmptyCellsONE.push(emptyCellsONE[myArrOfRandomIndexesONE[i]]);
+      }
+
+      for (let q = 0; q <= randomEmptyCellsONE.length - 1; q++) {
+        if (
+          randomEmptyCellsONE[q] === document.getElementById("cell-0-0") ||
+          randomEmptyCellsONE[q] === document.getElementById("cell-1-0") ||
+          randomEmptyCellsONE[q] === document.getElementById("cell-2-0")
+        ) {
+          console.log(
+            "randomEmptyCellsONE[q] === getCells('#cell-`1,2 or 3`-0')",
+            randomEmptyCellsONE[q]
+          );
+          continue;
+        } else {
+          console.log("good");
+          myOneUniqueCellPosition.push(randomEmptyCellsONE[q]);
+          console.log("myOneUniqueCellPosition", myOneUniqueCellPosition);
+          break;
+        }
+      }
+      console.log("randomEmptyCellsONE: ", randomEmptyCellsONE);
+      // const firstSMTH = randomEmptyCellsONE[0];
+      // const b = firstSMTH.style.backgroundColor;
+      // console.log("b ", b);
+
+      console.log("emptyCellsWithFFF: ", emptyCellsWithFFF);
+
+      console.log("notReallyEmptyCells: ", notReallyEmptyCells);
     }
-    console.log("randomEmptyCellsONE: ", randomEmptyCellsONE);
-    // const firstSMTH = randomEmptyCellsONE[0];
-    // const b = firstSMTH.style.backgroundColor;
-    // console.log("b ", b);
-
-    console.log("emptyCellsWithFFF: ", emptyCellsWithFFF);
-
-    console.log("notReallyEmptyCells: ", notReallyEmptyCells);
-    // }
-    // myFuncForOneRandomFreePosition2();
+    myFuncForOneRandomFreePosition2();
     // ------------------- end 20.04.2023 -------------------
 
     // --- start 21.04/2023 ---
+    const gridElement = document.getElementsByClassName("ball"); // add also with class .empty
+    const cellZero = getCells("#cell-0-0");
 
+    for (let d = 0; d < gridElement.length; d++) {
+      gridElement[d].addEventListener("click", function (something) {
+        if (something.currentTarget != 1) {
+          console.log(
+            "gridElement[d] === cellZero[0]: ",
+            gridElement[d] === cellZero[0]
+          );
+        }
+      });
+    }
     // --- end 21.04/2023 ---
 
     // changed from 3 to 4 iterations --------------------
@@ -641,47 +643,6 @@ var Lines = (function () {
         // Gets random empty cell
         var cell = emptyCells[rand(0, emptyCells.length - 1)];
         if (cellWithMyColor.length > 0 && a > 0 && a < 1000000000000) {
-          //   const gridElement = document.getElementById("grid").childNodes;
-
-          //   for (let d = 0; d < gridElement.length; d++) {
-          //     gridElement[d].addEventListener("click", function (something) {
-          //       if (true) {
-          //         console.log("MY CONSOLE!!!!!!");
-          //       }
-          //     });
-          //   }
-
-          if (notReallyEmptyCells.length === 1) {
-            console.log("LENGTH === 1");
-            function justAddOneBall123() {
-              blocked = true;
-              var cells = [];
-
-              for (var i = 0; i < 1; i++) {
-                var emptyCells = myOneUniqueCellPosition;
-                if (emptyCells.length > 0) {
-                  // Gets random empty cell
-                  var cell = emptyCells[0];
-                  //   grid[cell.dataset.y][cell.dataset.x] = colors.key("red");
-                  grid[cell.dataset.y][cell.dataset.x] =
-                    colors.key(bgColorFromLastClick);
-                  cells.push(cell);
-                  cell.className = "ball " + "red" + " fadein";
-                  cell.className =
-                    "ball " + `${bgColorFromLastClick}` + " fadein";
-                }
-              }
-              console.log(
-                "TRUE!!!!!!!!!!!!!!!!!!",
-                myOneUniqueCellPosition[0],
-                getCells("#cell-0-8")
-              );
-            }
-            justAddOneBall123();
-          } else {
-            console.log("LENGTH != 1");
-          }
-
           console.log(
             "%c My special Func in action! ",
             "background: #222; color: #bada55"
@@ -700,25 +661,6 @@ var Lines = (function () {
               `${cellWithMyColor[k].style.backgroundColor}` +
               " fadein";
           }
-
-          function justAddOneBall() {
-            blocked = true;
-            var cells = [];
-
-            for (var i = 0; i < 1; i++) {
-              var emptyCells = getCells("#cell-0-8");
-              if (emptyCells.length > 0) {
-                // Gets random empty cell
-                var cell = emptyCells[0];
-                grid[cell.dataset.y][cell.dataset.x] = colors.key("blue");
-                cells.push(cell);
-                cell.className = "ball " + "blue" + " fadein";
-              }
-            }
-          }
-          //   justAddOneBall();
-          var nodes = document.getElementById("grid").childNodes;
-          console.log("NODES: ", nodes);
         } else {
           var cell = emptyCells[i];
           grid[cell.dataset.y][cell.dataset.x] = colors.key(forecast[i]);
@@ -767,9 +709,7 @@ var Lines = (function () {
 
           cell.classList.add("fadeout");
           grid[y][x] = 0;
-          //   25.04.23 changed from 2 to 1
-          //   scoreAdd += 2;
-          scoreAdd += 1;
+          scoreAdd += 2;
         }
       }
     }
@@ -1019,7 +959,7 @@ var Lines = (function () {
     forecast = [];
     forecastElement.innerHTML = "";
     // added
-    // forecastPositionsForThreeBalls.innerHTML = "";
+    forecastPositionsForThreeBalls.innerHTML = "";
 
     for (var i = 0; i < 3; i++) {
       var ball = document.createElement("div");
@@ -1037,7 +977,7 @@ var Lines = (function () {
       // console.log("---------");
       forecastElement.appendChild(ball);
       // added
-      //   forecastPositionsForThreeBalls.appendChild(predictPosition);
+      forecastPositionsForThreeBalls.appendChild(predictPosition);
 
       // if (emptyCells.length > 0 && emptyCells.length < 3) {
       //   gameOver();
@@ -1221,7 +1161,7 @@ var Lines = (function () {
     forecast = [];
     forecastElement.innerHTML = "";
     // added
-    // forecastPositionsForThreeBalls.innerHTML = "";
+    forecastPositionsForThreeBalls.innerHTML = "";
 
     const myColorsForFirstIterationPrediction = ["yellow", "red", "green"];
 
@@ -1241,7 +1181,7 @@ var Lines = (function () {
       // console.log("---------");
       forecastElement.appendChild(ball);
       // added
-      //   forecastPositionsForThreeBalls.appendChild(predictPosition);
+      forecastPositionsForThreeBalls.appendChild(predictPosition);
 
       // if (emptyCells.length > 0 && emptyCells.length < 3) {
       //   gameOver();

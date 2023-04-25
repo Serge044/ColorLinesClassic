@@ -361,9 +361,9 @@ var Lines = (function () {
       }, 300);
 
       // Generates forecast balls
-      // forecastBalls();
-
-      forecastBallsFirstIteration();
+      forecastBalls();
+      // ----------------------- comment func above and uncomment func below if I want to use my special prediction -----------------------
+      // forecastBallsFirstIteration();
     }
     newAddBall();
   }
