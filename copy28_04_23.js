@@ -9,8 +9,6 @@ var refreshIntervalId;
 var bgColorFromLastClick;
 var myCurrentClickPosition;
 var forecastCellsWithColorBG;
-var justColorThatIneed;
-var currentColor11_05_23;
 
 var Lines = (function () {
   "use strict";
@@ -29,18 +27,13 @@ var Lines = (function () {
 
   // Ball colors
   var colors = {
-    // 1: "blue",
-    // 2: "cyan",
-    // 3: "red",
-    // 4: "brown",
-    // 5: "green",
-    // 6: "yellow",
-    // 7: "magenta",
     1: "blue",
-    2: "red",
-    3: "green",
-    4: "yellow",
-    5: "magenta",
+    2: "cyan",
+    3: "red",
+    4: "brown",
+    5: "green",
+    6: "yellow",
+    7: "magenta",
     key: function (color) {
       for (var key in this) {
         if (this[key] === color) {
@@ -134,9 +127,9 @@ var Lines = (function () {
             for (let j = 0; j < allEmptyCells.length; j++) {
               if (
                 allEmptyCells[j].style.backgroundColor === "blue" ||
-                // allEmptyCells[j].style.backgroundColor === "cyan" ||
+                allEmptyCells[j].style.backgroundColor === "cyan" ||
                 allEmptyCells[j].style.backgroundColor === "red" ||
-                // allEmptyCells[j].style.backgroundColor === "brown" ||
+                allEmptyCells[j].style.backgroundColor === "brown" ||
                 allEmptyCells[j].style.backgroundColor === "green" ||
                 allEmptyCells[j].style.backgroundColor === "yellow" ||
                 allEmptyCells[j].style.backgroundColor === "magenta"
@@ -346,7 +339,7 @@ var Lines = (function () {
         blocked = true;
         var cells = [];
 
-        for (var i = 0; i < 24; i++) {
+        for (var i = 0; i < 26; i++) {
           var emptyCells = getCells(".empty");
           if (true) {
             // Gets random empty cell
@@ -364,7 +357,7 @@ var Lines = (function () {
       addBallsRed();
       addBallsYellow();
     }
-    // addThreeBalls();
+    addThreeBalls();
 
     // ------------------------------ func for very first iteration (0) ------------------------------------------------------
 
@@ -542,9 +535,9 @@ var Lines = (function () {
     for (let j = 0; j < cell4_8.length; j++) {
       if (
         cell4_8[j].style.backgroundColor === "blue" ||
-        // cell4_8[j].style.backgroundColor === "cyan" ||
+        cell4_8[j].style.backgroundColor === "cyan" ||
         cell4_8[j].style.backgroundColor === "red" ||
-        // cell4_8[j].style.backgroundColor === "brown" ||
+        cell4_8[j].style.backgroundColor === "brown" ||
         cell4_8[j].style.backgroundColor === "green" ||
         cell4_8[j].style.backgroundColor === "yellow" ||
         cell4_8[j].style.backgroundColor === "magenta"
@@ -651,7 +644,6 @@ var Lines = (function () {
       // (cellWithMyColor.length === 0 || cellWithMyColor.length === 1)
     ) {
       console.log("%c My26_04", "background: #999; color: #d7aa00");
-      currentColor11_05_23 = myCurrentClickPosition.className;
       console.log(
         "current click: ",
         myCurrentClickPosition,
@@ -660,18 +652,6 @@ var Lines = (function () {
         "color: ",
         forecastCellsWithColorBG
       );
-      setTimeout(() => {
-        // you can do daley even less then 100(need to test it)
-        console.log("currentColor11_05_23:", currentColor11_05_23);
-        let splitToGetColorOnly = currentColor11_05_23.split(" ");
-        let splittedWordWithColor = splitToGetColorOnly[1];
-        console.log("splittedWordWithColor", splittedWordWithColor);
-        myCurrentClickPosition.className = `ball ${splittedWordWithColor}`;
-        console.log("Delayed for 1(or less)) second.");
-
-        // need to make it empty again
-        myCurrentClickPosition = "";
-      }, "100");
       if (
         myCurrentClickPosition === forecastCellsWithColorBG[0] ||
         myCurrentClickPosition === forecastCellsWithColorBG[1] ||
@@ -763,16 +743,6 @@ var Lines = (function () {
       );
       gameOver();
     }
-    if (
-      typeof threeElems[2] === "undefined" &&
-      getCells(".ball").length === 79
-    ) {
-      console.log(
-        "%c all last TWO cells was with forecast and last move was not a winning move",
-        "background: #555; color: #faaa00"
-      );
-      gameOver();
-    }
 
     // }
     // myFuncForOneRandomFreePosition2();
@@ -857,90 +827,6 @@ var Lines = (function () {
               "ball " +
               `${cellWithMyColor[k].style.backgroundColor}` +
               " fadein";
-
-            console.log(
-              "cellWithMyColor[k].style.backgroundColor ",
-              cellWithMyColor[k].style.backgroundColor
-            );
-            justColorThatIneed = cellWithMyColor[k];
-            console.log(
-              "justColorThatIneed: ",
-              justColorThatIneed.style.backgroundColor
-            );
-          }
-
-          if (
-            myCurrentClickPosition === forecastCellsWithColorBG[0] ||
-            myCurrentClickPosition === forecastCellsWithColorBG[1] ||
-            myCurrentClickPosition === forecastCellsWithColorBG[2]
-          ) {
-            currentColor11_05_23 = myCurrentClickPosition.className;
-            console.log("currentColor11_05_23:", currentColor11_05_23);
-
-            // myCurrentClickPosition.className = "ball " + `green` + " fadein";
-            // myCurrentClickPosition.style.backgroundColor = "rgb(221, 221, 221)"
-            setTimeout(() => {
-              // myCurrentClickPosition.style.backgroundColor = "green";
-              // you can do daley even less then 100(need to test it)
-              console.log("currentColor11_05_23:", currentColor11_05_23);
-              let splitToGetColorOnly = currentColor11_05_23.split(" ");
-              let splittedWordWithColor = splitToGetColorOnly[1];
-              console.log("splittedWordWithColor", splittedWordWithColor);
-              myCurrentClickPosition.className = `ball ${splittedWordWithColor}`;
-              console.log("Delayed for 1(or less)) second.");
-
-              // need to make it empty again
-              myCurrentClickPosition = "";
-            }, "100");
-            // myCurrentClickPosition.style.backgroundColor = "green";
-            // myCurrentClickPosition.className = "ball green";
-            console.log("myCurrentClickPosition", myCurrentClickPosition);
-            console.log(
-              "myCurrentClickPosition.className ",
-              myCurrentClickPosition.className
-            );
-            currentColor11_05_23 = myCurrentClickPosition.className;
-            console.log(
-              "justColorThatIneed.style.backgroundColor: ",
-              justColorThatIneed.style.backgroundColor
-            );
-            console.log(
-              "myCurrentClickPosition.style.backgroundColor: ",
-              myCurrentClickPosition.style.backgroundColor
-            );
-            // myCurrentClickPosition.className = "ball red";
-            console.log("Weird or ok ?!");
-
-            console.log(
-              "myCurrentClickPosition.style.backgroundColor: ",
-              myCurrentClickPosition.style.backgroundColor
-            );
-            // add ball on random cell will the same color
-            function justAddOneBall28_04() {
-              blocked = true;
-              var cells = [];
-
-              console.log("emptyCellsWithFFF: ", emptyCellsWithFFF);
-
-              let oneFromArr = [];
-              oneFromArr.push(emptyCellsWithFFF[0]);
-              console.log("oneFromArr", oneFromArr);
-
-              for (var i = 0; i < 1; i++) {
-                var emptyCells = oneFromArr;
-                // var emptyCells = getCells("#cell-0-8");
-
-                if (emptyCells.length > 0) {
-                  // Gets random empty cell
-                  var cell = emptyCells[0];
-                  // grid[cell.dataset.y][cell.dataset.x] = colors.key("blue");
-                  grid[cell.dataset.y][cell.dataset.x] = colors.key("green");
-                  cells.push(cell);
-                  cell.className = "ball " + "green" + " fadein";
-                }
-              }
-            }
-            justAddOneBall28_04();
           }
 
           function justAddOneBall() {
@@ -1238,7 +1124,7 @@ var Lines = (function () {
           var cell = emptyCells[0];
           grid[cell.dataset.y][cell.dataset.x] = colors.key("red");
           cells.push(cell);
-          cell.className = "ball " + "red" + " fadein";
+          cell.className = "ball " + "cyan" + " fadein";
         }
       }
     }
@@ -1271,7 +1157,7 @@ var Lines = (function () {
       // emptyCells.length - just like example
       predictPosition.innerText = emptyCells.length;
 
-      forecast[i] = colors[rand(1, 5)];
+      forecast[i] = colors[rand(1, 7)];
       //   console.log(forecast[i]);
 
       ball.className = "ball " + forecast[i];

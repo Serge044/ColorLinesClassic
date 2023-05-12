@@ -29,18 +29,13 @@ var Lines = (function () {
 
   // Ball colors
   var colors = {
-    // 1: "blue",
-    // 2: "cyan",
-    // 3: "red",
-    // 4: "brown",
-    // 5: "green",
-    // 6: "yellow",
-    // 7: "magenta",
     1: "blue",
-    2: "red",
-    3: "green",
-    4: "yellow",
-    5: "magenta",
+    2: "cyan",
+    3: "red",
+    4: "brown",
+    5: "green",
+    6: "yellow",
+    7: "magenta",
     key: function (color) {
       for (var key in this) {
         if (this[key] === color) {
@@ -134,9 +129,9 @@ var Lines = (function () {
             for (let j = 0; j < allEmptyCells.length; j++) {
               if (
                 allEmptyCells[j].style.backgroundColor === "blue" ||
-                // allEmptyCells[j].style.backgroundColor === "cyan" ||
+                allEmptyCells[j].style.backgroundColor === "cyan" ||
                 allEmptyCells[j].style.backgroundColor === "red" ||
-                // allEmptyCells[j].style.backgroundColor === "brown" ||
+                allEmptyCells[j].style.backgroundColor === "brown" ||
                 allEmptyCells[j].style.backgroundColor === "green" ||
                 allEmptyCells[j].style.backgroundColor === "yellow" ||
                 allEmptyCells[j].style.backgroundColor === "magenta"
@@ -346,7 +341,7 @@ var Lines = (function () {
         blocked = true;
         var cells = [];
 
-        for (var i = 0; i < 24; i++) {
+        for (var i = 0; i < 22; i++) {
           var emptyCells = getCells(".empty");
           if (true) {
             // Gets random empty cell
@@ -364,7 +359,7 @@ var Lines = (function () {
       addBallsRed();
       addBallsYellow();
     }
-    // addThreeBalls();
+    addThreeBalls();
 
     // ------------------------------ func for very first iteration (0) ------------------------------------------------------
 
@@ -542,9 +537,9 @@ var Lines = (function () {
     for (let j = 0; j < cell4_8.length; j++) {
       if (
         cell4_8[j].style.backgroundColor === "blue" ||
-        // cell4_8[j].style.backgroundColor === "cyan" ||
+        cell4_8[j].style.backgroundColor === "cyan" ||
         cell4_8[j].style.backgroundColor === "red" ||
-        // cell4_8[j].style.backgroundColor === "brown" ||
+        cell4_8[j].style.backgroundColor === "brown" ||
         cell4_8[j].style.backgroundColor === "green" ||
         cell4_8[j].style.backgroundColor === "yellow" ||
         cell4_8[j].style.backgroundColor === "magenta"
@@ -759,16 +754,6 @@ var Lines = (function () {
     ) {
       console.log(
         "%c all last 3 cells was with forecast and last move was not a winning move",
-        "background: #555; color: #faaa00"
-      );
-      gameOver();
-    }
-    if (
-      typeof threeElems[2] === "undefined" &&
-      getCells(".ball").length === 79
-    ) {
-      console.log(
-        "%c all last TWO cells was with forecast and last move was not a winning move",
         "background: #555; color: #faaa00"
       );
       gameOver();
@@ -1238,7 +1223,7 @@ var Lines = (function () {
           var cell = emptyCells[0];
           grid[cell.dataset.y][cell.dataset.x] = colors.key("red");
           cells.push(cell);
-          cell.className = "ball " + "red" + " fadein";
+          cell.className = "ball " + "cyan" + " fadein";
         }
       }
     }
@@ -1271,7 +1256,7 @@ var Lines = (function () {
       // emptyCells.length - just like example
       predictPosition.innerText = emptyCells.length;
 
-      forecast[i] = colors[rand(1, 5)];
+      forecast[i] = colors[rand(1, 7)];
       //   console.log(forecast[i]);
 
       ball.className = "ball " + forecast[i];

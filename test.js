@@ -205,3 +205,39 @@ for (let d = 0; d < gridElement.length; d++) {
     }
   });
 }
+
+function isLineWithFivePlusBalls() {
+  var lineSets = [];
+  var allCells = document.getElementById("grid").childNodes;
+
+  for (var i = 0; i < allCells.length; i++) {
+    var lines = getLines(allCells[i]);
+    if (lines) {
+      lineSets.push(lines);
+    }
+  }
+
+  // Checks if five-ball lines are found after adding balls
+  if (lineSets.length > 0) {
+    removeLines(lineSets);
+  }
+}
+
+function findEmptyCellWithPrediction() {
+  const allCellsWithEmptyClass = getCells(".empty");
+  let emptyCellWithPrediction = [];
+  for (let j = 0; j < allCellsWithEmptyClass.length; j++) {
+    if (
+      allCellsWithEmptyClass[j].style.backgroundColor === "blue" ||
+      allCellsWithEmptyClass[j].style.backgroundColor === "cyan" ||
+      allCellsWithEmptyClass[j].style.backgroundColor === "red" ||
+      allCellsWithEmptyClass[j].style.backgroundColor === "brown" ||
+      allCellsWithEmptyClass[j].style.backgroundColor === "green" ||
+      allCellsWithEmptyClass[j].style.backgroundColor === "yellow" ||
+      allCellsWithEmptyClass[j].style.backgroundColor === "magenta"
+    ) {
+      emptyCellWithPrediction.push(cell4_8[j]);
+    }
+  }
+  console.log("!!!emptyCellWithPrediction: ", emptyCellWithPrediction);
+}
