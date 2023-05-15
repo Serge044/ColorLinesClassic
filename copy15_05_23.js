@@ -364,7 +364,7 @@ var Lines = (function () {
       addBallsRed();
       addBallsYellow();
     }
-    // addThreeBalls();
+    addThreeBalls();
 
     // ------------------------------ func for very first iteration (0) ------------------------------------------------------
 

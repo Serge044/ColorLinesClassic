@@ -364,7 +364,7 @@ var Lines = (function () {
       addBallsRed();
       addBallsYellow();
     }
-    // addThreeBalls();
+    addThreeBalls();
 
     // ------------------------------ func for very first iteration (0) ------------------------------------------------------
 
@@ -515,6 +515,7 @@ var Lines = (function () {
               ) {
                 // -----------------------------------
                 // Ends the game
+                console.log("returned gameOver from string 519");
                 return gameOver();
               }
             }
@@ -751,6 +752,7 @@ var Lines = (function () {
       );
       console.log("notReallyEmptyCells.length: ", notReallyEmptyCells.length);
       console.log('getCells(".ball").length: ', getCells(".ball").length);
+      setTimeout(window.location.reload.bind(window.location), 3);
       gameOver();
     }
     if (
@@ -761,6 +763,7 @@ var Lines = (function () {
         "%c all last 3 cells was with forecast and last move was not a winning move",
         "background: #555; color: #faaa00"
       );
+      setTimeout(window.location.reload.bind(window.location), 3);
       gameOver();
     }
     if (
@@ -771,6 +774,7 @@ var Lines = (function () {
         "%c all last TWO cells was with forecast and last move was not a winning move",
         "background: #555; color: #faaa00"
       );
+      setTimeout(window.location.reload.bind(window.location), 3);
       gameOver();
     }
 

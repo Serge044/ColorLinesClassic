@@ -241,3 +241,125 @@ function findEmptyCellWithPrediction() {
   }
   console.log("!!!emptyCellWithPrediction: ", emptyCellWithPrediction);
 }
+// -------------------------------
+
+function checkIfLineTest() {
+  const allCellsWithBall = getCells(".ball");
+  const cellsWithBallForTest = [];
+  // if (cell4_8[0].style.backgroundColor === "rgb(221, 221, 221)") {
+  for (let j = 0; j < allCellsWithBall.length; j++) {
+    if (
+      allCellsWithBall[j].id === "cell-0-6" ||
+      allCellsWithBall[j].id === "cell-1-6" ||
+      allCellsWithBall[j].id === "cell-2-6" ||
+      allCellsWithBall[j].id === "cell-3-6" ||
+      allCellsWithBall[j].id === "cell-4-6" ||
+      allCellsWithBall[j].id === "cell-5-6" ||
+      allCellsWithBall[j].id === "cell-6-6" ||
+      allCellsWithBall[j].id === "cell-7-6" ||
+      allCellsWithBall[j].id === "cell-8-6" ||
+      allCellsWithBall[j].id === "cell-0-7" ||
+      allCellsWithBall[j].id === "cell-1-7" ||
+      allCellsWithBall[j].id === "cell-2-7" ||
+      allCellsWithBall[j].id === "cell-3-7" ||
+      allCellsWithBall[j].id === "cell-4-7" ||
+      allCellsWithBall[j].id === "cell-5-7" ||
+      allCellsWithBall[j].id === "cell-6-7" ||
+      allCellsWithBall[j].id === "cell-7-7" ||
+      allCellsWithBall[j].id === "cell-8-7"
+
+      // allEmptyCells[j].style.backgroundColor === "cyan" ||
+    ) {
+      cellsWithBallForTest.push(allCellsWithBall[j]);
+    }
+  }
+  console.log("allCellsWithBall", allCellsWithBall);
+  var lineSets = [];
+  console.log("lineSets", lineSets);
+  for (var i = 0; i < cellsWithBallForTest.length; i++) {
+    var lines = getLines(cellsWithBallForTest[i]);
+    if (lines) {
+      lineSets.push(lines);
+    }
+  }
+  console.log("lineSets", lineSets);
+  // Checks if five-ball lines are found after adding balls
+  if (lineSets.length > 0) {
+    removeLines(lineSets);
+    console.log("lineSets", lineSets);
+    console.log("10 POINTS TO GRIFFINDOR(ball was added by comp)");
+    // maybe here I also need to add smht like "refreshIntervalId = setInterval(timer, 250);", but not sure, need to test
+  } else {
+    // Checks if the grid is completely filled with balls
+    if (getCells(".empty").length === 0) {
+      // -----------------------------------
+      // Ends the game
+      console.log("returned gameOver from string 519");
+      return gameOver();
+    }
+  }
+}
+checkIfLineTest();
+
+// -------------------------------
+
+function checkIfLineForProduction() {
+  const allCellsWithBall = getCells(".ball");
+
+  console.log("allCellsWithBall", allCellsWithBall);
+  var lineSets = [];
+  console.log("lineSets", lineSets);
+  for (var i = 0; i < allCellsWithBall.length; i++) {
+    var lines = getLines(allCellsWithBall[i]);
+    if (lines) {
+      lineSets.push(lines);
+    }
+  }
+  console.log("lineSets", lineSets);
+  // Checks if five-ball lines are found after adding balls
+  if (lineSets.length > 0) {
+    removeLines(lineSets);
+    console.log("lineSets", lineSets);
+    console.log("10 POINTS TO GRIFFINDOR(ball was added by comp)");
+    // maybe here I also need to add smht like "refreshIntervalId = setInterval(timer, 250);", but not sure, need to test
+  } else {
+    // Checks if the grid is completely filled with balls
+    if (getCells(".empty").length === 0) {
+      // -----------------------------------
+      // Ends the game
+      console.log("SMTH)))");
+      return gameOver();
+    }
+  }
+}
+checkIfLineForProduction();
+// -------------------------------
+// -
+// -
+// -
+// -
+// -
+// -
+// -
+
+function shuffleTwo(array) {
+  let currentIndex = array.length,
+    randomIndex;
+
+  // While there remain elements to shuffle.
+  while (currentIndex != 0) {
+    // Pick a remaining element.
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex],
+      array[currentIndex],
+    ];
+  }
+
+  return array;
+}
+const shaffled = shuffleTwo(emptyCellsWithFFF);
+console.log("SHAFFLED: ", shaffled);
