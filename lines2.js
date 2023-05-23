@@ -328,7 +328,7 @@ var Lines = (function () {
 
       function addBallsRed() {
         const randomOrderOfFiftyElemsWithColor = [
-          "yellow",
+          "red",
           "green",
           "red",
           "green",
@@ -371,14 +371,14 @@ var Lines = (function () {
           "magenta",
           "blue",
           "green",
-          "yellow",
+          "red",
           "magenta",
           "red",
           "blue",
           "red",
           "green",
           "magenta",
-          "yellow",
+          "green",
         ];
         blocked = true;
         var cells = [];
