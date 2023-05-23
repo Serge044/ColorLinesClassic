@@ -6,16 +6,35 @@
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+	<div class="header">
+		<div class="forecast-container">
+			<div class="score-container">
+				<div class="yellow-ball-for-score"></div>
+				<div class="text">× 04438</div>
+			</div>
+			<div class="forecast"></div>
+		</div>
+	</div>
 	<div id="game">
-		<div class="forecast"></div>
+		<!-- <div class="forecast"></div> -->
 		<!-- <div class="class__forecastPositionsForThreeBalls"></div> -->
 		<div class="grid" id="grid"></div>
 		<div style="text-align:center">
 			Score: <strong class="score">0</strong> /
 			Record: <strong class="record">0</strong>
 		</div>
+		<div class="buttons-container">
+			<button class="btn">🏠</button>
+			<button class="btn">⬅️</button>
+			<button class="btn">🚫</button>
+			<button class="btn">❤️</button>
+		</div>
 	</div>
+
+	<!-- The video -->
+<video autoplay muted loop id="myVideo">
+	<!-- <source src="background/sky.mp4" type="video/mp4"> -->
+</video>
 
 	<script src="lines2.js"></script>
 	<script>

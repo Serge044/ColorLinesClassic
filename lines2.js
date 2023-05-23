@@ -327,6 +327,59 @@ var Lines = (function () {
       }
 
       function addBallsRed() {
+        const randomOrderOfFiftyElemsWithColor = [
+          "yellow",
+          "green",
+          "red",
+          "green",
+          "magenta",
+          "red",
+          "red",
+          "green",
+          "green",
+          "yellow",
+          "yellow",
+          "magenta",
+          "blue",
+          "red",
+          "magenta",
+          "yellow",
+          "yellow",
+          "blue",
+          "red",
+          "yellow",
+          "magenta",
+          "green",
+          "magenta",
+          "magenta",
+          "blue",
+          "yellow",
+          "green",
+          "yellow",
+          "magenta",
+          "green",
+          "magenta",
+          "yellow",
+          "red",
+          "green",
+          "yellow",
+          "magenta",
+          "blue",
+          "magenta",
+          "magenta",
+          "green",
+          "magenta",
+          "blue",
+          "green",
+          "yellow",
+          "magenta",
+          "red",
+          "blue",
+          "red",
+          "green",
+          "magenta",
+          "yellow",
+        ];
         blocked = true;
         var cells = [];
 
@@ -335,9 +388,12 @@ var Lines = (function () {
           if (true) {
             // Gets random empty cell
             var cell = emptyCells[0];
-            grid[cell.dataset.y][cell.dataset.x] = colors.key("red");
+            grid[cell.dataset.y][cell.dataset.x] = colors.key(
+              `${randomOrderOfFiftyElemsWithColor[i]}`
+            );
             cells.push(cell);
-            cell.className = "ball " + "red" + " fadein";
+            cell.className =
+              "ball " + `${randomOrderOfFiftyElemsWithColor[i]}` + " fadein";
           }
         }
       }
@@ -364,7 +420,7 @@ var Lines = (function () {
       addBallsRed();
       addBallsYellow();
     }
-    // addThreeBalls();
+    addThreeBalls();
 
     // ------------------------------ func for very first iteration (0) ------------------------------------------------------
 
